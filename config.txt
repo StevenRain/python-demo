@@ -1,0 +1,3 @@
+Kate,24,Female,Netherlands
+Anna,26,Female,Russia
+Nobody, 20, Male, America
