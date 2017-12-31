@@ -32,6 +32,7 @@ button3.place(x=40, y=40, width=80, height=40)
 root.mainloop()
 
 
+# labal example
 # import random
 # root = Tk()
 # # width x height + x_offset + y_offset:
