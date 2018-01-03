@@ -1,51 +1,26 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+import requests
 
-' a test module '
-
-
-__author__ = 'Steven Rain'
+winnerURL = 'http://c6.wap.com/api/v1/orderdata/me/orders/findTopWinners?clientId=31'
+response = requests.get(winnerURL)
+jsonArray = response.json()
 
 
-class Animal(object):
-    count = 1
+class Winner(object):
+    username = ''
+    winning_amount = 0
 
-    def run(self):
-        print('Animal is running!')
-
-
-class Cat(Animal):
-    def __init__(self):
-        Animal.count = Animal.count + 1
-
-    def run(self):
-        print('Cat is running')
+    def __init__(self, loads):
+        self.__dict__ = loads
+        self.username = loads['username']
+        self.winning_amount = loads['winningAmount']
 
 
-class Dog(Animal):
-    def __init__(self):
-        Animal.count = Animal.count + 1
-
-    def run(self):
-        print('Dog is running')
-
-
-def run(animal):
-    animal.run()
+count = 0
+for jsonData in jsonArray:
+    winner = Winner(jsonData)
+    if winner.winning_amount >= 500:
+        count = count + 1
+        print(str(count) + " : " + winner.username + " : " + str(winner.winning_amount))
 
 
-someKingOfAnimal = Animal()
-dog = Dog()
-cat = Cat()
-
-dog.run()
-cat.run()
-someKingOfAnimal.run()
-
-print
-run(dog)
-run(cat)
-run(someKingOfAnimal)
-
-print(cat.count)
-
+print(count)
