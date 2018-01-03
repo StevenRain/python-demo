@@ -22,7 +22,7 @@ def exec_sql(sql):
         connection.close()
         return values
     except Exception as e:
-        return e
+        return "ERROR : " + str(e)
 
 
 def build_button_pressed():
@@ -63,7 +63,6 @@ sqlText.place(x=60, y=90, width=400, height=20)
 # print
 consoleText = Text(root, background="black", foreground="green")
 consoleText.place(x=60, y=120, width=400, height=150)
-consoleText.insert(END, "Console Window")
 
 # 生成sql
 submitButton = Button(root, text="生成sql", command=build_button_pressed)
