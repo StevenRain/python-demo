@@ -1,0 +1,46 @@
+
+恢复文件
+	git checkout 0ecaad88ab45e058d38bc5a52356b1dc8bed22b5 xx.java 或 git checkout xx.java
+
+分支操作
+	查看所有分支 git branch -a
+	查看远程分支 git branch -r
+	查看本地分支 git branch
+	创建分支  git branch test-branch
+	切换分支  git checkout test-branch
+	删除本地分支 git branch -D test-branch
+	删除远程分支 git push origin :test-branch
+
+commit 相关
+	取消commit里的文件 git rm --cached xx.java
+	查看最近一次commit git log -p -1
+	修改commit但是没有push的消息 git commit --amend
+	取消本地commit git reset HEAD~
+	取消commit(不恢复代码) git reset commit_id
+	取消commit(恢复代码) git reset --hard commit_id
+
+pull
+	git fetch
+	git diff
+	fit merge
+
+stash
+	git stash save "message"
+	git stash list
+	git stash apply stash@{0}
+	git stash stash@{0}
+	git stash clear
+	git stash drop stash@{0}
+
+恢复不小心删除的文件
+	git rm *.xml
+	git reset HEAD *.xml
+	git checkout *.xml
+
+取消add
+	git reset HEAD xx.java
+	git reset HEAD .
+
+git checkout
+git rebase origin
+	git -add git rebase --continue

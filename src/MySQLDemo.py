@@ -55,7 +55,7 @@ def insert_button_pressed():
     consoleText.insert(END, result)
 
 
-# 查询数据
+# 查询数据s
 def query_button_pressed():
     sql = sqlText.get()
     result = exec_sql(sql)
