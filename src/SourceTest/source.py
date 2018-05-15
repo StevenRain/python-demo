@@ -37,10 +37,10 @@ class OldOpenCode:
 
 def get_old_open_codes(t_game_unique_id, start):
     if t_game_unique_id.startswith("HF_"):
-        pattern = "select * from lottery_result.%s where game_unique_id='%s' AND modify_time>=DATE_ADD(NOW(),INTERVAL -2 DAY) AND open_code IS NOT NULL limit %d,%d"
+        pattern = "select * from lottery_result.%s where game_unique_id='%s' AND modify_time>=DATE_ADD(NOW(),INTERVAL -1 DAY) AND open_code IS NOT NULL limit %d,%d"
         sql = pattern % (t_game_unique_id, t_game_unique_id, start, start + 1)
     else:
-        pattern = "select * from lottery_result.LF where game_unique_id='%s' AND modify_time>=DATE_ADD(NOW(),INTERVAL -2 DAY) AND open_code IS NOT NULL limit %d,%d"
+        pattern = "select * from lottery_result.LF where game_unique_id='%s' AND modify_time>=DATE_ADD(NOW(),INTERVAL -1 DAY) AND open_code IS NOT NULL limit %d,%d"
         sql = pattern % (t_game_unique_id, start, start + 1)
     results = exec_sql(sql)
     old_data = []
@@ -123,8 +123,8 @@ for game_unique_id in game_unique_id_list:
                     notice = pattern % (game_unique_id, game_issue_no, source)
                     log.info(notice)
                 else:
-                    pattern = "测试未通过，彩种 [%s] 期号 [%s] 数据源 [%s] 开奖延迟 [%ss] OpenCai开奖时间 [%s], 实际开奖时间[%s]"
-                    notice = pattern % (game_unique_id, game_issue_no, source, delay_in_seconds, old_open_time, new_result.open_time)
+                    pattern = "测试未通过，彩种 [%s] 期号 [%s] 数据源 [%s] 开奖延迟 [%ss] OpenCai开奖时间 [%s], [%s] 开奖时间[%s]"
+                    notice = pattern % (game_unique_id, game_issue_no, source, delay_in_seconds, old_open_time, source, new_result.open_time)
                     log.error(notice)
             else:
                 pattern = "测试未通过, 彩种 [%s] 期号 [%s] 实际开奖结果 [%s]，数据源 [%s] 抓取的结果 [%s] **********************************"
